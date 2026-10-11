@@ -1,35 +1,65 @@
-# Cédric — Lucky Lands
+# Cédric — Lucky Lands · V2
 
-Een vrolijke, isometrische ontdekgame. Verdien munten met klusjes, koop tools, open lucky blocks en speel steeds nieuwe stukjes wereld vrij.
+Een zelfstandige, isometrische ontdekgame met Liquid Glass, vier minigames, tools, lucky blocks en steeds nieuwe stukjes wereld.
+
+**Website:** https://cedric-chi.vercel.app/
+
+## Nieuw in V2
+
+### Liquid Glass en lichtbreking
+
+De glazen panelen krijgen een eigen Canvas-laag. Die bemonstert het actuele speelveld met vergrote en gebogen coördinaten: de wereld achter het glas wordt werkelijk vervormd. Daarboven liggen lichte randen, kleurzweem, schaduw en transparante lagen. CSS-blur en highlights vormen de fallback. De glaslaag ververst maximaal circa 11 keer per seconde; het speelveld heeft een eigen animatielus. Bij een voorkeur voor minder beweging wordt de dynamische breking uitgeschakeld.
+
+### Vier verschillende minigames
+
+| Werkplaats | Uitdaging | Moeilijker door |
+|---|---|---|
+| Smid | Oven op temperatuur brengen, meerdere gerichte hamerslagen, afkoelen in het juiste venster | Meer slagen, snellere wijzer en smallere doelen |
+| Bakker | Bestelling bekijken en ingrediënten in dezelfde volgorde terughalen | Langere reeks, meer ingrediënten en kortere kijktijd |
+| Tuinier | Zaadjes op een 4 × 4 veld onthouden en terugplanten | Meer zaadjes en kortere kijktijd |
+| Postkantoor | Pakketjes sorteren op kleur én symbool | Meer combinaties, meer pakketjes en minder tijd |
+
+- **Rustig / Pittig / Expert** zijn direct beschikbaar; standaard staat het spel op Pittig.
+- Elke werkplaats heeft een eigen rang en beste score. Vanaf 50% nauwkeurigheid levert een voltooide klus één ervaringspunt op. Elke drie punten verhogen de rang.
+- Hogere rangen verhogen de uitdaging tot een begrensd maximum, zodat de minigames speelbaar blijven.
+- Een voltooide klus betaalt een basisloon; nauwkeurigheid en gekozen moeilijkheid leveren extra munten op. Je ontvangt maximaal 2,5×, 3× of 3,5× het basisloon.
+- Stop je halverwege, dan ontvang je geen loon. Een verlopen postronde wordt eenmaal afgerekend op basis van de behaalde score.
+- Bij wisselen naar een ander tabblad pauzeren de tijdvensters en geheugenvoorbeelden.
 
 ## Spelen
 
-Download `index.html` en open het in een moderne browser. Geen installatie, account, build, server, externe afbeeldingen of internet nodig. Alle code, tekeningen, geluiden en vertalingen zitten in dit ene bestand.
+Open de website of download `index.html` en open het in een moderne browser. Geen installatie, account, build, server, externe afbeeldingen of internet nodig voor het gedownloade bestand. Alle code, tekeningen, geluiden en vertalingen zitten in één bestand.
 
-- **Lopen:** klik/tik op een vakje, gebruik WASD of de pijltjes. Op je telefoon zijn er ook richtingknoppen.
-- **Werken:** klik op de smid, tuinier, bakker of het postkantoor. Start de wijzer en stop hem in groen voor dubbel loon.
-- **Tools:** koop bijlen, houwelen en hamers in de winkel. Elke tool blijft in je rugzak. Het volgende lucky block toont de vereiste soort en sterkte.
-- **Ontdekken:** hak het lucky block een paar keer. Je ontvangt munten en een nieuw gebied met nieuwe werkplekken en een volgend block.
+- **Lopen:** klik/tik op een vakje, gebruik WASD of de pijltjes. Op de telefoon staan ook richtingknoppen.
+- **Werken:** klik op een werkplaats. De knop Werkplaatsen loopt naar de dichtstbijzijnde werkplek.
+- **Tools:** koop bijlen, houwelen en hamers. Je houdt je tools. Elk lucky block toont de vereiste soort en sterkte.
+- **Ontdekken:** hak een lucky block open voor munten en een nieuw gebied.
 - **Auto:** klik op een auto, stap in en klik op een leeg vrijgespeeld vakje. Escape annuleert.
 - **Camera:** sleep over het veld, zoom met +/− of het muiswiel, centreer met ⌖.
-- **Taal:** NL / EN rechtsboven wisselt tussen Nederlands en Engels.
-- **Voortgang:** automatisch opgeslagen in de lokale browseropslag. Een andere browser of een ander apparaat heeft een eigen avontuur. Wissen van browsergegevens wist ook het spel. Uitleg bevat een bevestigde resetknop.
+- **Taal:** NL / EN rechtsboven wisselt de interface en minigames.
+- **Voortgang:** wordt lokaal in de browser opgeslagen. Een andere browser of ander apparaat heeft een eigen avontuur. Uitleg bevat een resetknop met bevestiging.
 
-## Ontwerp
+V1-opslag wordt automatisch aangevuld met rang, records en moeilijkheid. Munten, tools en gebieden blijven behouden. Een lopende minigame en schade aan een nog ongeopend block worden niet opgeslagen.
 
-Het spel begint zonder munten. Drie gewone klusjes zijn voldoende voor de eerste bijl. Nieuwe districten van 4 × 4 vakjes volgen een vierkante spiraal. De reeks heeft geen ontworpen eindpunt; praktische grootte en snelheid zijn afhankelijk van het apparaat. Na elke drie blocks stijgt het benodigde toolniveau. Hogere gebieden betalen meer loon. Elke klus betaalt ook als de bonuszone wordt gemist.
+## Ontwerp en techniek
 
-De wereld gebruikt Canvas 2D met isometrische projectie, gelaagde blokken, een afgerond geanimeerd personage en confetti. De interface gebruikt lichte, transparante panelen. Alle assets worden ter plekke getekend of zijn systeememoji. Het spel bevat geen tracking, advertenties, aankopen of externe verbindingen.
+Districten van 4 × 4 vakjes volgen een vierkante spiraal zonder ontworpen eindpunt. De praktische wereldgrootte is afhankelijk van het apparaat. Na elke drie blocks stijgt het vereiste toolniveau. Hogere landen betalen meer loon.
 
-## GitHub Pages
+- `index.html`: complete runtime, CSS, Canvas-renderer, padzoeker, minigames en NL/EN-teksten.
+- `tests/logic.cjs`: regressietests op de daadwerkelijke inline spelcode in een gesimuleerde DOM/Canvas. Alleen Node.js nodig.
+- Save key: `cedric-lucky-lands-v1`, schema versie 1 met achterwaarts compatibele toevoegingen.
+- Geen tracking, advertenties, aankopen, externe libraries of netwerkverzoeken vanuit de game.
 
-Deze repository is direct geschikt voor statische hosting. Kies in GitHub **Settings → Pages → Deploy from a branch → main → /(root)**. GitHub maakt daarna de speel-URL aan. Alleen het opslaan van de broncode activeert Pages nog niet.
+## Testen
 
-## Techniek
+```sh
+node tests/logic.cjs
+```
 
-- `index.html`: complete runtime, inclusief CSS, renderer, padzoeker, spelregels en NL/EN-teksten.
-- `tests/logic.cjs`: regressietest op de daadwerkelijke inline spelcode voor verdienen, kopen, toolvereisten, 60 uitbreidingen, bereikbaarheid, teleporteren, taal en opslaan. Gebruikt Node.js zonder dependencies en een gesimuleerde DOM/Canvas.
-- Save key: `cedric-lucky-lands-v1`, schema versie 1.
-- Tijdelijke looproutes en schade aan een nog ongeopend block worden niet bewaard; munten, tools, vrijgespeelde landen, taal en positie wel.
+Controleert vier minigames, drie moeilijkheidsgraden, goede en foute invoer, tijdslimieten, dubbele uitbetaling, vakervaring, pauzeren, oude saves, 60 wereldexpansies, bereikbaarheid, teleporteren en taal.
 
-Testen: `node tests/logic.cjs`. De spelregels zijn hiermee gecontroleerd; een volledige browser- en touchtest op echte apparaten blijft aanbevolen. De wereldrenderer is apart met Canvas visueel gecontroleerd.
+De tests simuleren de DOM. Een volledige visuele browser- en touchtest blijft nodig; Liquid Glass en performance moeten op echte browsers/apparaten worden beoordeeld.
+
+## Deploy
+
+De GitHub-repository is door de eigenaar gekoppeld aan Vercel. De game is statische HTML zonder buildstap; publiceer de hoofdmap. Nieuwe commits op de gekoppelde productiebranch kunnen automatisch een Vercel-deployment starten.
