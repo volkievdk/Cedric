@@ -1,10 +1,24 @@
-# Cédric — Lucky Lands · V3
+# Cédric — Lucky Lands · V4
 
-Een zelfstandige, isometrische ontdekgame met Liquid Glass, zes kleurrijke biomen, twaalf soorten denkpuzzels, gereedschappen en lucky blocks.
+Een zelfstandige, isometrische ontdekgame met Liquid Glass, een donker boslandschap, twaalf soorten denkpuzzels, houttransport en één centraal lucky block.
 
 **Website:** [cedric-chi.vercel.app](https://cedric-chi.vercel.app/)
 
-## Nieuw in V3
+## Nieuw in V4
+
+- Donkere bos-, aarde- en leisteenkleuren, warme verlichting en Liquid Glass-panelen.
+- Een menselijker personage met kleding, rugzak, gezicht, benen en loop- en hakanimaties.
+- Herkenbare werkplaatsen met eigen architectuur: een smidsoven en aambeeld, een bakkerij met brood en luifel, een glazen kas en een postkantoor met laadperron.
+- Bossen met hakbare bomen. Een boom kost drie basisslagen en levert twee stammen op; sterkere bijlen hakken sneller. Afgekapte bomen groeien na 90 seconden terug.
+- Een bestuurbare pick-up: draag vier stammen, laad maximaal twintig in de auto en rijd naar de houtwerf. Elke afgeleverde stam levert zes munten op. De auto rijdt sneller dan het personage loopt en volgt vrije routes.
+- Twaalf volgende gebieden zijn alvast doorzichtig zichtbaar, inclusief bomen en gebouwen. Je kunt er pas na vrijspelen komen.
+- Precies één lucky block blijft op het centrale plein. Elke opening vernieuwt het block, verhoogt de volgende opdracht en ontsluit één gebied. De ◆-knop loopt naar dit plein.
+
+Hout verdient munten; voor elke werelduitbreiding blijft een bouwster uit een educatief contract nodig. Houttransport vervangt de oude teleportauto.
+
+Zie [CHANGELOG.md](CHANGELOG.md) voor de releasewijzigingen.
+
+## Educatieve bouwcontracten
 
 ### Bouwcontracten: denken, proberen en verbeteren
 
@@ -38,9 +52,9 @@ Het paspoort bewaart de categorie **zelfstandig**, **na herstel** of **met hulp*
 
 Dit zijn registraties van opgeloste opdrachten in de game, geen bewijs van leerwinst buiten de game. Zie [BLUE_TEAM.md](BLUE_TEAM.md) voor de ontwerpbedoeling, aannames en een korte gebruikstest met Cédric.
 
-### Meer kleur, met Liquid Glass
+### Donkere wereld, met Liquid Glass
 
-Zes feller gekleurde biomen geven de wereld meer afwisseling. Glazen panelen behouden hun Canvas-laag: die bemonstert het actuele speelveld met vergrote en gebogen coördinaten, zodat de wereld achter het glas vervormt. Lichte randen, kleurzweem, schaduw en transparante lagen versterken het effect. CSS-blur en highlights vormen de fallback.
+Zes gedempte landschappaletten en warme lampen geven de wereld afwisseling. Transparante bomen houden het personage en de pick-up zichtbaar wanneer ze erachter staan. Glazen panelen behouden hun Canvas-laag: die bemonstert het actuele speelveld met vergrote en gebogen coördinaten, zodat de wereld achter het glas vervormt. Lichte randen, kleurzweem, schaduw en transparante lagen versterken het effect. CSS-blur en highlights vormen de fallback.
 
 De glaslaag ververst maximaal circa elf keer per seconde; het speelveld heeft een eigen animatielus. Bij een voorkeur voor minder beweging wordt de dynamische breking uitgeschakeld.
 
@@ -50,9 +64,12 @@ Open de website of download `index.html` en open het in een moderne browser. Het
 
 - **Lopen:** klik/tik op een vakje, gebruik WASD of de pijltjes. Op de telefoon staan ook richtingknoppen.
 - **Werken:** klik op een werkplaats. De knop Werkplaatsen loopt naar de dichtstbijzijnde werkplek.
-- **Tools:** koop bijlen, houwelen en hamers. Elk lucky block toont de vereiste soort en sterkte.
-- **Ontdekken:** open een lucky block met de juiste tool en één bouwster voor munten en een nieuw gebied.
-- **Auto:** klik op een auto, stap in en klik op een leeg vrijgespeeld vakje. Escape annuleert.
+- **Tools:** koop bijlen, houwelen en hamers. Het centrale lucky block toont de vereiste soort en sterkte.
+- **Ontdekken:** open het centrale lucky block met de juiste tool en één bouwster voor munten en een nieuw gebied.
+- **Bos:** klik op een boom om erheen te lopen en te hakken. Klik opnieuw voor de volgende slag. Een bijl is vereist.
+- **Pick-up:** de autoknop of F loopt naar de pick-up. Laad of los hout, stap in en klik op een vrijgespeeld vakje om te rijden. F of de autoknop laat je uitstappen. Bomen en gebouwen blokkeren de route.
+- **Verkopen:** rijd of loop naar de houtwerf. Een geparkeerde pick-up moet vlakbij staan om ook de laadbak te verkopen. Afleveren kan ook vanuit de auto.
+- **Stoppen:** Escape stopt de huidige route. Bij een open venster sluit Escape eerst het venster.
 - **Camera:** sleep over het veld, zoom met +/− of het muiswiel, centreer met ⌖.
 - **Taal:** NL / EN rechtsboven wisselt de interface en puzzels.
 - **Paspoort:** bekijk opgeloste opdrachten per puzzeltype en niveau, inclusief gebruikte ondersteuning.
@@ -60,13 +77,13 @@ Open de website of download `index.html` en open het in een moderne browser. Het
 
 ## Bestaande saves
 
-V1- en V2-saves behouden hun munten, tools en gebieden. De nieuwe leerregistratie begint leeg: oude scores worden niet als leerbewijs overgenomen. Een oude save zonder bouwsterrenregistratie en met `stage > 0` krijgt eenmalig één bouwster om verder te ontdekken.
+V1-, V2- en V3-saves behouden hun munten, tools, vrijgespeelde gebieden en bestaande leerregistraties. Het vernieuwde terrein plaatst het personage en de pick-up opnieuw op het beginland; de houtvoorraad begint leeg. Voor V1/V2 begint de leerregistratie leeg: oude scores worden niet als leerbewijs overgenomen. Een oude save zonder bouwsterrenregistratie en met `stage > 0` krijgt eenmalig één bouwster om verder te ontdekken.
 
-Een lopend contract en schade aan een nog ongeopend block worden niet opgeslagen. Afgeronde bouwdoelen worden wel direct in het paspoort opgeslagen; het loon en de bouwster volgen uitsluitend na afronding van het hele contract.
+Houtvoorraad, laadbak, voertuigpositie en teruggroeitijden van gekapte bomen worden opgeslagen. Een lopend contract en schade aan een nog ongeopend block of gedeeltelijk gehakte boom worden niet opgeslagen. Afgeronde bouwdoelen worden wel direct in het paspoort opgeslagen; het loon en de bouwster volgen uitsluitend na afronding van het hele contract.
 
 ## Ontwerp en techniek
 
-Districten van 4 × 4 vakjes volgen een vierkante spiraal zonder ontworpen eindpunt. De praktische wereldgrootte hangt af van het apparaat. Na elke drie blocks stijgt het vereiste toolniveau. Werkplaatsen in hogere landen betalen meer basisloon.
+Districten van 6 × 6 vakjes volgen een vierkante spiraal zonder ontworpen eindpunt. De praktische wereldgrootte hangt af van het apparaat. Na elke drie openingen van het centrale block stijgt het vereiste toolniveau. Werkplaatsen in hogere landen betalen meer basisloon.
 
 - `index.html`: complete runtime, CSS, Canvas-renderer, padzoeker, puzzels en NL/EN-teksten.
 - `tests/logic.cjs`: regressietests op de daadwerkelijke inline spelcode in een gesimuleerde DOM/Canvas. Alleen Node.js nodig.
@@ -79,9 +96,9 @@ Districten van 4 × 4 vakjes volgen een vierkante spiraal zonder ontworpen eindp
 node tests/logic.cjs
 ```
 
-Automatische controles dekken 2.160 gegenereerde puzzeloplossingen op alle drie niveaus, 60 wereldexpansies, contractbedragen, geen dubbele uitbetaling, bouwsterren, extra oefeningen na hulp of herstel, routemutaties, leerregistratie per niveau, vaste moeilijkheid en oude saves. Daarnaast worden bereikbaarheid, teleporteren, vertalingen, de renderlus en lichtbreking met gesimuleerde componenten gecontroleerd.
+Automatische controles dekken 2.160 gegenereerde puzzeloplossingen op alle drie niveaus, 60 wereldexpansies, contractbedragen, geen dubbele uitbetaling, bouwsterren, extra oefeningen na hulp of herstel, routemutaties, leerregistratie per niveau, vaste moeilijkheid en oude saves. Daarnaast worden bereikbaarheid, echt lopen en rijden, één centraal block, afgesloten vooruitzichten, houthakken, laadcapaciteit, parkeren, afleveren zonder dubbele of verre uitbetaling, vertalingen, de renderlus en lichtbreking met gesimuleerde componenten gecontroleerd.
 
-**Deze tests gebruiken een gesimuleerde DOM/Canvas en zijn geen browser-QA.** Een volledige visuele browser- en touchtest blijft nodig; Liquid Glass, leesbaarheid en prestaties moeten op echte apparaten worden beoordeeld.
+**Deze tests gebruiken een gesimuleerde DOM/Canvas en zijn geen browser-QA.** De Canvas-wereld is daarnaast als afbeelding gerenderd en visueel bekeken. Een volledige browser- en touchtest blijft nodig; Liquid Glass, leesbaarheid en prestaties moeten op echte apparaten worden beoordeeld.
 
 ## Deploy
 
